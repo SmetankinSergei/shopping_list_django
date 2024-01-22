@@ -14,3 +14,11 @@ a {
 a:hover {
     color: #909090;
 }
+
+.active {
+    color: red;
+}
+
+.active:hover {
+    color: #f67070;
+}

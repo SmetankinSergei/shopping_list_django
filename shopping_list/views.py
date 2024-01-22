@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView
 
@@ -8,11 +7,19 @@ from shopping_list.models import Product, Category
 class ProductListView(ListView):
     model = Product
     template_name = 'shopping_list/category_list.html'
-    extra_context = {
-        'title': 'all products',
-        'is_all_categories': True,
-        'products': Product.objects.all(),
-    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sorting = self.request.GET.get('sorting', 'by_date')
+        context['sorting'] = sorting
+        context['title'] = 'all products'
+        context['is_all_categories'] = True
+        products = Product.objects.all()
+        if sorting == 'by_date':
+            context['products'] = products.order_by('change_at')
+        elif sorting == 'by_price':
+            context['products'] = products.order_by('price')
+        return context
 
 
 class ProductDetailView(DetailView):
@@ -36,12 +43,6 @@ class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('shopping_list:product_list')
 
-# def all_products(request):
-#     context = {'title': 'all products',
-#                'is_all_categories': True,
-#                'products': Product.objects.all()}
-#     return render(request, 'shopping_list/category_list.html', context)
-
 
 class CategoryListView(ListView):
     model = Category
@@ -49,10 +50,16 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs['pk']
+        sorting = self.request.GET.get('sorting', 'by_date')
+        context['sorting'] = sorting
         category = Category.objects.get(pk=pk)
         context['category'] = category
         context['title'] = category.name
-        context['products'] = Product.objects.filter(category=pk)
+        products = Product.objects.filter(category=pk)
+        if sorting == 'by_date':
+            context['products'] = products.order_by('change_at')
+        elif sorting == 'by_price':
+            context['products'] = products.order_by('price')
         return context
 
 
