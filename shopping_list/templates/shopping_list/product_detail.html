@@ -20,7 +20,7 @@
         <div class="item-price">price: {{ object.price }}</div>
         <div class="update-date">{{ object.change_at }}</div>
     </div>
-    <a class="common-button" href="{% url 'shopping_list:create_prod' %}">edit</a>
+    <a class="common-button" href="{% url 'shopping_list:update_prod' object.pk %}">edit</a>
     <a class="delete-button" href="{% url 'shopping_list:delete_prod' object.pk %}">delete</a>
 </div>
 

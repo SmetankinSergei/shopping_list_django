@@ -1,0 +1,1 @@
+[{"model": "shopping_list.category", "pk": 3, "fields": {"name": "food", "create_at": "2024-01-22T20:16:56.012Z"}}, {"model": "shopping_list.category", "pk": 4, "fields": {"name": "cloth", "create_at": "2024-01-22T20:20:59.679Z"}}]

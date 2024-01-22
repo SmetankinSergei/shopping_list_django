@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DeleteView, DetailView
+from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 
 from shopping_list.models import Product, Category
 
@@ -39,9 +39,19 @@ class ProductCreateView(CreateView):
     }
 
 
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ['name', 'details', 'category', 'img', 'price']
+    success_url = reverse_lazy('shopping_list:product_list')
+    extra_context = {
+        'title': 'update product',
+    }
+
+
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('shopping_list:product_list')
+    extra_context = {'title': 'delete product'}
 
 
 class CategoryListView(ListView):
@@ -76,3 +86,4 @@ class CategoryCreateView(CreateView):
 class CategoryDeleteView(DeleteView):
     model = Category
     success_url = reverse_lazy('shopping_list:product_list')
+    extra_context = {'title': 'delete category'}

@@ -18,7 +18,3 @@ a:hover {
 .active {
     color: red;
 }
-
-.active:hover {
-    color: #f67070;
-}
