@@ -1,0 +1,11 @@
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/sorting.css' %}">
+{% endblock %}
+
+<div class="sorting">
+  <div class="sorting-name">sorting:</div>
+  <a href="#?sorting='by_date'"><div class="by-date">by date</div></a>
+  <a href="#?sorting='by_price'"><div class="by-price">by price</div></a>
+</div>

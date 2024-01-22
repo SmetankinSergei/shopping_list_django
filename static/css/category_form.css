@@ -1,0 +1,30 @@
+.confirm-button {
+    margin: 1em;
+    padding-top: 0em;
+    width: 10.5em;
+}
+
+label {
+    margin-left: 1em;
+    font-size: 1.5em;
+}
+
+input {
+    margin: 1em;
+    height: 3em;
+    width: 30em;
+    padding: 1em;
+    background-color: #909090;
+    border: solid 1px #000;
+    border-radius: 0.5em;
+}
+
+textarea {
+    margin: 1em;
+    height: 12em;
+    width: 30em;
+    padding: 1em;
+    background-color: #909090;
+    border: solid 1px #000;
+    border-radius: 0.5em;
+}

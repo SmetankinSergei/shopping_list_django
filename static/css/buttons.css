@@ -1,0 +1,24 @@
+.common-button, .delete-button, .confirm-button {
+    display: block;
+    color: #101010;
+    margin-inline: 1em;
+    text-align: center;
+    color: #bbb7b7;
+    padding-top: 1em;
+    width: 10em;
+    height: 3em;
+    border-radius: 0.5em;
+    border: solid 1px #000;
+}
+
+.common-button:hover {
+    background-color: #252525;
+}
+
+.delete-button, .confirm-button {
+    background-color: red;
+}
+
+.delete-button:hover, .confirm-button:hover {
+    background-color: #f67070;
+}

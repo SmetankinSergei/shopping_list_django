@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'css/category_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="top-correction" style="margin-top:4em;"></div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="confirm-button" type="submit">confirm</button>
+</form>
+
+<a class="common-button" href="{% url 'shopping_list:product_list' %}">cancel</a>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load categories_tags %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/category_form.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="top-correction" style="margin-top:4em;"></div>
+    {% get_categories as categories %}
+    {% if categories %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="confirm-button" type="submit">confirm</button>
+        </form>
+
+        <a class="common-button" href="{% url 'shopping_list:product_list' %}">cancel</a>
+    {% else %}
+        <div class="warning-message">First you need to create at least one category</div>
+    {% endif %}
+{% endblock %}

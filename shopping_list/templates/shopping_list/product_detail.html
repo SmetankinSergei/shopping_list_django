@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="top-correction" style="margin-top:4em;"></div>
+<div class="product">
+    {% if object.img %}
+        <img class="item-img" src="{{ object.img.url }}">
+    {% else %}
+        <img class="item-img" src="{% static 'img/default.svg' %}">
+    {% endif %}
+    <div class="text">
+        <div class="item-name">{{ object.name }}</div>
+        <div class="item-details">{{ object.details }}</div>
+        <div class="item-price">price: {{ object.price }}</div>
+        <div class="update-date">{{ object.change_at }}</div>
+    </div>
+    <a class="common-button" href="{% url 'shopping_list:create_prod' %}">edit</a>
+    <a class="delete-button" href="{% url 'shopping_list:delete_prod' object.pk %}">delete</a>
+</div>
+
+{% endblock %}

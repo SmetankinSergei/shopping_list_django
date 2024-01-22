@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/item_card.css' %}">
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+{% endblock %}
+
+{% block sorting %}
+    {% include 'shopping_list/includes/sorting.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="top-correction" style="margin-top:4em;"></div>
+
+{% for object in products %}
+    {% include 'shopping_list/includes/item_card.html' %}
+{% endfor %}
+
+<br>
+{% if not is_all_categories %}
+<a class="delete-button" href="{% url 'shopping_list:delete_cat' category.pk %}">delete category</a>
+{% endif %}
+<br>
+<div class="top-correction" style="margin-top:4em;"></div>
+{% endblock %}

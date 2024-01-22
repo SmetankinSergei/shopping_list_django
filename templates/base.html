@@ -1,0 +1,70 @@
+{% load static %}
+{% load categories_tags %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/null_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <div class="base-field">
+        <div class="left-bar">
+            <img class="logo" src="{% static 'img/logo.svg' %}">
+            <h1 class="page-title">{{ title|upper }}</h1>
+
+            {% if is_all_categories %}
+                <div class="current-section">all products</div>
+            {% else %}
+                <a class="section-button" href="{% url 'shopping_list:product_list' %}">all products</a>
+            {% endif %}
+
+            {% get_categories as categories %}
+            {% for category in categories %}
+                {% if category.name == title %}
+                    <div class="current-section">{{ category.name }}</div>
+                {% else %}
+                    <a class="section-button" href="{% url 'shopping_list:category_list' category.pk %}">{{ category.name }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <br>
+
+            {% if is_new_category %}
+                <div class="current-section">new category</div>
+            {% else %}
+                <a class="section-button" href="{% url 'shopping_list:create_cat' %}">new category</a>
+            {% endif %}
+
+            {% if is_new_product %}
+                <div class="current-section">new product</div>
+            {% else %}
+                <a class="section-button" href="{% url 'shopping_list:create_prod' %}">new product</a>
+            {% endif %}
+        </div>
+
+        <div class="main-field ">
+            <div class="header">
+                {% block sorting %}{% endblock %}
+            </div>
+
+            {% block content %}{% endblock %}
+
+            <div class="footer">
+                <div class="developer-contact">
+                    <a href="https://t.me/elcapitansmetankins" target="_blank">
+                        <img class="logo-telegram" src="{% static 'img/logo-telegram.svg' %}" alt="logo Telegram">
+                    </a>
+                    <a href="https://t.me/elcapitansmetankins" target="_blank">
+                        <div class="developer-contact-text">developer contact</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% load static %}
+
+<div class="item-card">
+    {% if object.img %}
+        <img class="item-photo" src="{{ object.img.url }}">
+    {% else %}
+        <img class="item-photo" src="{% static 'img/default.svg' %}">
+    {% endif %}
+    <div class="info">
+        <div class="item-name">{{ object.name }}</div>
+        <div class="details">{{ object.details|truncatewords:7 }}</div>
+        <div class="details">price: {{ object.price }}</div>
+        <div class="details">date: {{ object.change_at }}</div>
+    </div>
+    <div class="item-buttons">
+        <a class="common-button" href="{% url 'shopping_list:detail_prod' object.pk %}">show details</a>
+    </div>
+</div>
